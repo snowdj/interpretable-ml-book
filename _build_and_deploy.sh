@@ -15,6 +15,8 @@ BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then echo $TRAVIS_BRANCH; else
 
 
 cd manuscript
+# Create references
+make -B 10-references.Rmd
 # Compile html version of book for gh-pages
 make -B html
 # Compile md version of book for leanpub
@@ -39,7 +41,7 @@ if [  "$BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ] ; then
   # Get the deploy key by using Travis's stored variables to decrypt deploy_key.enc
   git config credential.helper "store --file=.git/credentials"
   echo "https://${GH_TOKEN}:@github.com" > .git/credentials
-  git commit -m "${BUILD_COMMIT_MSG}"
+  git commit -m "${BUILD_COMMIT_MSG}" --allow-empty
 
   # Now that we're all set up, we can push.
   git push origin $TARGET_BRANCH

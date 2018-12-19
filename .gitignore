@@ -56,3 +56,12 @@ manuscript/*.md
 manuscript/cache
 
 kindlegen
+manuscript/images/*.png
+
+# From SBRL package usage
+*.out
+*.label
+packrat/lib*/
+
+# Gets build automatically, so ignore for repo
+manuscript/10-references.Rmd
